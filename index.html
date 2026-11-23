@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Erklärvideo – Reinigungsplan</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif; color: #fff;
+    background: linear-gradient(160deg, #0c2f86, #071a4d);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 18px; padding: 20px 16px;
+  }
+  h1 { font-size: clamp(20px, 3.4vw, 30px); font-weight: 800; text-align: center; }
+  video {
+    width: 100%; max-width: 1280px; max-height: 78vh; border-radius: 16px; background: #000;
+    box-shadow: 0 24px 60px rgba(0, 0, 20, .5);
+  }
+  p { font-size: 15px; opacity: .85; text-align: center; }
+  a { color: #fff; font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>Erklärvideo · Reinigungsplan</h1>
+  <video id="v" controls playsinline preload="metadata"></video>
+  <p>6½ Minuten, ohne Ton · <a id="alt" href="#"></a></p>
+<script>
+  var klein = "reinigungsplan-erklaervideo-handy.mp4";
+  var gross = "reinigungsplan-erklaervideo.mp4";
+  var breit = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1) >= 1700;
+  var v = document.getElementById("v");
+  var alt = document.getElementById("alt");
+  function setze(grossWahl) {
+    v.src = grossWahl ? gross : klein;
+    alt.textContent = grossWahl ? "Kleinere Fassung (schneller)" : "Volle Qualität";
+    alt.onclick = function (e) { e.preventDefault(); setze(!grossWahl); v.play(); };
+  }
+  setze(breit);
+</script>
+</body>
+</html>
